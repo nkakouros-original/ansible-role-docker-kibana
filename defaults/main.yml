@@ -1,6 +1,6 @@
 ---
 
-kibana_user: root
+kibana_user: kibana
 kibana_group: kibana
 
 kibana_version: 8.14.3
@@ -10,8 +10,6 @@ kibana_config_dir: "/etc/kibana"
 kibana_elastic_certificates_dir: /etc/kibana/certs
 # The path where the `kibana_elastic_certificates` will be uploaded into.
 
-elastic_certificates_download_dir: ~/elk/certs
-
 kibana_config:
   csp:
     strict: true
@@ -19,7 +17,7 @@ kibana_config:
     hosts:
       - "http{{ (kibana_elastic_certificates != None) | ternary('s', '') }}://localhost:9200"
   server:
-    host: localhost
+    host: 0.0.0.0
     port: 5601
     name: "{{ inventory_hostname }}"
   telemetry:
