@@ -3,6 +3,7 @@
   roles:
     - geerlingguy.docker
     - nkakouros.easyrsa
+    - nkakouros.elasticsearch
   vars: 
     easyrsa_servers:
       - name: elastic
