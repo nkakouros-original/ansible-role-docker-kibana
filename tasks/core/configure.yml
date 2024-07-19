@@ -18,4 +18,4 @@
     dest: /etc/kibana/kibana.yml
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
-  notify: kibana restart service
+  changed_when: false

@@ -7,16 +7,26 @@
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
     mode: 0o750
+  changed_when: false
 
-- name: Upload elasticsearch CA cert
+- name: Check if Elasticsearch CA cert files exist
+  stat:
+    path: "{{ kibana_elastic_certificates_dir }}/{{ item.value | basename }}"
+  register: cert_files
+  loop: "{{ kibana_elastic_certificates | dict2items }}"
+
+- name: Upload Elasticsearch CA cert files
   copy:
     src: "{{ item.value }}"
-    dest: "{{ kibana_elastic_certificates_dir }}/"
+    dest: "{{ kibana_elastic_certificates_dir }}/{{ item.value | basename }}"
     owner: "{{ kibana_group if item.key == 'key' else kibana_user }}"
     group: "{{ kibana_group }}"
     mode: "{{ '0o400' if item.key == 'key' else '0o640' }}"
+  when: not (cert_files.results[item.index].stat.exists)
   loop: "{{ kibana_elastic_certificates | dict2items }}"
-  notify: kibana restart service
+  loop_control:
+    index_var: index
+
 
 - name: Configure Kibana to use the elasticsearch certificates
   set_fact:
