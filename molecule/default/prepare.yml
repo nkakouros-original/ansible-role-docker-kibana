@@ -4,10 +4,26 @@
     - geerlingguy.docker
     - nkakouros.easyrsa
   vars: 
+    easyrsa_servers:
+      - name: elastic
+        pass: 'nk}$Q%];a3Gy$E!QvT8E'
+
+    easyrsa_clients:
+      - name: logstash
+        pass: 'nk}$Q%];a3Gy$E!QvT8E'
+      - name: kibana-backend
+        pass: 'nk}$Q%];a3Gy$E!QvT8E'
+      - name: beats
+        pass: 'nk}$Q%];a3Gy$E!QvT8E'
+
+    easyrsa_to_pkcs12: "{{ easyrsa_clients + easyrsa_servers }}"
+    easyrsa_to_pkcs8: "{{ easyrsa_clients + easyrsa_servers }}"
+    easyrsa_to_pkcs1: "{{ easyrsa_clients + easyrsa_servers }}"
+
     easyrsa_download: []
     easyrsa_download_pki: true
-    easyrsa_download_dir: ~/elk/certs
-
+    easyrsa_download_dir: '~'
+    ansible_user_id: "{{ lookup('pipe', 'id -un') }}"
     
   pre_tasks:
   #  - name: Install packages required by ansible modules

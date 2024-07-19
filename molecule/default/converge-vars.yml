@@ -1,11 +1,9 @@
 ---
 
 kibana_elastic_certificates:
-    ca: "{{ elastic_certificates_download_dir }}/ca/ca.crt"
-    crt: "{{ elastic_certificates_download_dir
-            }}/kibana-backend/kibana-backend.crt"
-    key: "{{ elastic_certificates_download_dir
-            }}/kibana-backend/kibana-backend.key"
+    ca: "~/pki/ca.crt"
+    crt: "~/pki/issued/kibana-backend.crt"
+    key: "~/pki/private/kibana-backend.key"
 
 kibana_elasticsearch_user: >-
       {{
