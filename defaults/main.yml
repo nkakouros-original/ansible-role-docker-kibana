@@ -1,5 +1,8 @@
 ---
 
+kibana_enabled: true
+# Set to false to completely disable the role
+
 kibana_user: kibana
 kibana_group: kibana
 
