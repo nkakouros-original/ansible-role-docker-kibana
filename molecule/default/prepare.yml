@@ -1,0 +1,31 @@
+- name: Prepare
+  hosts: all
+  roles:
+    - geerlingguy.docker
+    - nkakouros.easyrsa
+  vars: 
+    easyrsa_download: []
+    easyrsa_download_pki: true
+    easyrsa_download_dir: ~/elk/certs
+
+    
+  pre_tasks:
+  #  - name: Install packages required by ansible modules
+   #   package:
+    #    name: "{{ package }}"
+     # loop: "{{ packages }}"
+      #loop_control:
+       # loop_var: package
+      #vars:
+       # packages:
+        #  - curl
+    
+    - name: Ensure /etc/easyrsa/pki directory exists
+      file:
+        path: /etc/easyrsa/pki
+        state: directory
+  tasks: 
+     - name: Create docker network
+       docker_network:
+         name: "elastic"
+         state: present

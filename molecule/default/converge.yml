@@ -1,0 +1,8 @@
+---
+
+- name: Converge
+  hosts: all
+  roles:
+    - abhi8080.kibana
+  vars_files:
+    - converge-vars.yml

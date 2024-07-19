@@ -1,0 +1,47 @@
+---
+
+kibana_user: root
+kibana_group: kibana
+
+kibana_version: 8.14.3
+
+kibana_config_dir: "/etc/kibana"
+
+kibana_elastic_certificates_dir: /etc/kibana/certs
+# The path where the `kibana_elastic_certificates` will be uploaded into.
+
+elastic_certificates_download_dir: ~/elk/certs
+
+kibana_config:
+  csp:
+    strict: true
+  elasticsearch:
+    hosts:
+      - "http{{ (kibana_elastic_certificates != None) | ternary('s', '') }}://localhost:9200"
+  server:
+    host: localhost
+    port: 5601
+    name: "{{ inventory_hostname }}"
+  telemetry:
+    enabled: false
+  elasticsearch:
+    ssl:
+      alwaysPresentCertificate: true
+
+kibana_elasticsearch_user: ~
+# The elasticsearch user that kibana will use to connect to elasticsearch. Leave
+# it `None`/`~` if there is no such user configured (ie if the default built-in
+# user should be used without a password). Valid keys:
+# kibana_elasticsearch_user:
+#   name: UserName
+#   pass: UserPassword
+
+kibana_elastic_certificates_passphrase: ~
+# The passphrase used to encrypt the node's private key. If none, leave this
+# setting to `None`/`~`.
+
+kibana_update_passwords: false
+# Set to true to update the `kibana_user.password` and
+# `kibana_elastic_certificates_passphrase` in the kibana keystore. By default
+# this is off to support idempotenty in ansible.
+# }}}

@@ -1,0 +1,22 @@
+---
+
+galaxy_info:
+  role_name: docker-kibana
+  namespace: abhi8080
+  author: Abhinav Kalra
+  description: Installs and configures Kibana via Docker
+  license: GPLv3
+  min_ansible_version: 2.5
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+  galaxy_tags:
+    - kibana
+    - elk
+    - elasticsearch
+    - elastic
+    - docker
+
+dependencies: []

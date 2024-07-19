@@ -1,0 +1,21 @@
+---
+
+- include_tasks: variables.yml
+
+- include_tasks: core/system.yml
+
+- include_tasks: configure.yml
+
+- include_tasks: install.yml
+
+- name: Run pending handlers now
+  meta: flush_handlers
+
+- include_tasks: core/keystore.yml
+
+- include_tasks: security/certificates.yml
+  when: kibana_elastic_certificates != None
+
+- include_tasks: security/keystore.yml
+
+- include_tasks: core/configure.yml
