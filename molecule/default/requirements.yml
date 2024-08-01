@@ -1,4 +1,5 @@
 ---
 
 - src: geerlingguy.docker
+- src: nkakouros.easyrsa
 - src: nkakouros.elasticsearch
