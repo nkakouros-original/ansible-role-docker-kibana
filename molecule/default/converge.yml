@@ -3,6 +3,6 @@
 - name: Converge
   hosts: all
   roles:
-    - abhi8080.docker-kibana
+    - abhi8080.docker_kibana
   vars_files:
     - converge-vars.yml

@@ -1,7 +1,7 @@
 ---
 
 galaxy_info:
-  role_name: docker-kibana
+  role_name: docker_kibana
   namespace: abhi8080
   author: Abhinav Kalra
   description: Installs and configures Kibana via Docker
