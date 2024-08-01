@@ -15,7 +15,7 @@
         kibana_combined_config
         | to_nice_yaml(indent=2, explicit_start=True)
       }}
-    dest: /etc/kibana/kibana.yml
+    dest: "{{ kibana_config_dir }}/kibana.yml"
     owner: "{{ kibana_user }}"
     group: "{{ kibana_group }}"
   changed_when: false

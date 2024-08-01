@@ -8,5 +8,6 @@ fi
 
 docker run --network=elastic --rm --name=kibana \
          -p {{ kibana_config.server.port }}:{{ kibana_config.server.port }} \
-         -v {{ kibana_config_dir }}/kibana.yml:/usr/share/kibana/config/kibana.yml \
+         -v {{ kibana_elastic_certificates_dir }}:{{ kibana_elastic_certificates_dir }} \
+         -v {{ kibana_config_dir }}/kibana.yml:{{ kibana_config_dir }}/kibana.yml \
           docker.elastic.co/kibana/kibana:"{{ kibana_version }}"

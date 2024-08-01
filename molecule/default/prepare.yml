@@ -1,3 +1,5 @@
+---
+
 - name: Prepare
   hosts: all
   roles:
@@ -27,15 +29,17 @@
     ansible_user_id: "{{ lookup('pipe', 'id -un') }}"
     
   pre_tasks:
-  #  - name: Install packages required by ansible modules
-   #   package:
-    #    name: "{{ package }}"
-     # loop: "{{ packages }}"
-      #loop_control:
-       # loop_var: package
-      #vars:
-       # packages:
-        #  - curl
+    - name: Install packages required by ansible modules
+      package:
+        name: "{{ package }}"
+      loop: "{{ packages }}"
+      loop_control:
+        loop_var: package
+      vars:
+        packages:
+          - gnupg
+          - software-properties-common
+          - sudo
     
     - name: Ensure /etc/easyrsa/pki directory exists
       file:

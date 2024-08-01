@@ -1,7 +1,7 @@
 ---
 
 - name: Deploy Kibana script
-  copy:
+  template:
     src: "kibana"
     dest: /usr/local/bin/kibana
     mode: '0755'
@@ -9,7 +9,7 @@
     group: root
 
 - name: Deploy Kibana systemd service file
-  copy:
+  template:
     src: "kibana.service"
     dest: /etc/systemd/system/kibana.service
     mode: '0644'

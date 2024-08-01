@@ -8,9 +8,10 @@ kibana_group: kibana
 
 kibana_version: 8.14.3
 
-kibana_config_dir: "/etc/kibana"
+kibana_config_dir: "/usr/share/kibana/config"
 
-kibana_elastic_certificates_dir: /etc/kibana/certs
+kibana_elastic_certificates_dir: /usr/share/kibana/config/certs
+
 # The path where the `kibana_elastic_certificates` will be uploaded into.
 
 kibana_config:
